@@ -3,14 +3,15 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./src/index.js",
+    "dev": "node --watch ./src/index.js"
   },
   "keywords": [],
-  "author": "jsdev",
+  "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "json-server": "^0.17.0"
+    "fastify": "^4.28.1",
+    "uuid": "^10.0.0"
   }
 }
