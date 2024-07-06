@@ -14,6 +14,17 @@ class CreateProductService {
             throw new Error("Preencha todos os campos!")
         }
 
+
+        const checkProductNameExists = await prismaClient.product.findFirst({
+            where: {
+                name: name
+            }
+        })
+
+        if(checkProductNameExists) {
+            throw new Error("já existe um produto com esse nome!")
+        }
+
         const product = await prismaClient.product.create({
             data: {
                 name,
