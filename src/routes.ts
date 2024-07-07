@@ -12,6 +12,10 @@ import { CreateOrderController } from "./controllers/OrderControllers/CreateOrde
 import { ListOrdersController } from "./controllers/OrderControllers/ListOrdersController";
 import { DeleteOrderController } from "./controllers/OrderControllers/DeleteOrderController";
 
+import { CreateLoyaltyController } from "./controllers/LoyaltyControllers/CreateLoyaltyController";
+import { ListLoyaltysController } from "./controllers/LoyaltyControllers/ListLoyaltysController";
+import { DeleteLoyaltyController } from "./controllers/LoyaltyControllers/DeleteLoyaltyController";
+
 export async function routes(fastify: FastifyInstance, options: FastifyPluginOptions) {
 
     fastify.post("/user", async (request: FastifyRequest, reply: FastifyReply) => {
@@ -50,5 +54,18 @@ export async function routes(fastify: FastifyInstance, options: FastifyPluginOpt
 
     fastify.delete("/order", async (request: FastifyRequest, reply: FastifyReply) => {
         return new DeleteOrderController().handle(request, reply);
+    })
+
+
+    fastify.post("/loyalty", async (request: FastifyRequest, reply: FastifyReply) => {
+        return new CreateLoyaltyController().handle(request, reply);
+    })    
+
+    fastify.get("/loyaltys", async (request: FastifyRequest, reply: FastifyReply) => {
+        return new ListLoyaltysController().handle(request, reply);
+    })
+
+    fastify.delete("/loyalty", async (request: FastifyRequest, reply: FastifyReply) => {
+        return new DeleteLoyaltyController().handle(request, reply);
     })
 }
