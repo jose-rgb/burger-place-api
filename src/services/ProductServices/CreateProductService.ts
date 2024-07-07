@@ -3,7 +3,7 @@ import prismaClient from "../../prisma";
 interface CreateProductProps {
     name: string;
     type: string;
-    image: string
+    image: string;
     description: string;
     price: number;
 }
@@ -13,7 +13,6 @@ class CreateProductService {
         if(!name || !type || !image || !description || !price) {
             throw new Error("Preencha todos os campos!")
         }
-
 
         const checkProductNameExists = await prismaClient.product.findFirst({
             where: {
