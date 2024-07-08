@@ -11,6 +11,16 @@ class CreateLoyaltyService {
             throw new Error("Cumpom fidelidade inválido!")
         }
 
+        const checkLoyaltyExists = await prismaClient.loyalty.findFirst({
+            where: {
+                userId: userId,
+            }
+        })
+
+        if(checkLoyaltyExists) {
+            throw new Error("Fidelidade já cadastrada!")
+        }
+
         const loyalty = await prismaClient.loyalty.create({
             data: {
                 accumulated_points,
