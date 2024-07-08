@@ -3,10 +3,12 @@ import { FastifyInstance, FastifyPluginOptions, FastifyRequest, FastifyReply } f
 import { CreateUserController } from "./controllers/UserControllers/CreateUserController";
 import { ListUsersController } from "./controllers/UserControllers/ListUsersController";
 import { DeleteUserController } from "./controllers/UserControllers/DeleteUserController";
+import { UpdateUserController } from "./controllers/UserControllers/UpdateUserController";
 
 import { CreateProductController } from "./controllers/ProductControllers/CreateProductController";
 import { ListProductsController } from "./controllers/ProductControllers/ListProductsController";
 import { DeleteProductController } from "./controllers/ProductControllers/DeleteProductController";
+import { UpdateProductController } from "./controllers/ProductControllers/UpdateProductController";
 
 import { CreateOrderController } from "./controllers/OrderControllers/CreateOrderController";
 import { ListOrdersController } from "./controllers/OrderControllers/ListOrdersController";
@@ -15,6 +17,7 @@ import { DeleteOrderController } from "./controllers/OrderControllers/DeleteOrde
 import { CreateLoyaltyController } from "./controllers/LoyaltyControllers/CreateLoyaltyController";
 import { ListLoyaltysController } from "./controllers/LoyaltyControllers/ListLoyaltysController";
 import { DeleteLoyaltyController } from "./controllers/LoyaltyControllers/DeleteLoyaltyController";
+import { UpdateLoyaltyController } from "./controllers/LoyaltyControllers/UpdateLoyaltyController";
 
 export async function routes(fastify: FastifyInstance, options: FastifyPluginOptions) {
 
@@ -30,6 +33,10 @@ export async function routes(fastify: FastifyInstance, options: FastifyPluginOpt
         return new DeleteUserController().handle(request, reply);
     })
 
+    fastify.put("/user", async (request: FastifyRequest, reply: FastifyReply) => {
+        return new UpdateUserController().handle(request, reply);
+    })
+
 
     fastify.post("/product", async (request: FastifyRequest, reply: FastifyReply) => {
         return new CreateProductController().handle(request, reply);
@@ -41,6 +48,10 @@ export async function routes(fastify: FastifyInstance, options: FastifyPluginOpt
 
     fastify.delete("/product", async (request: FastifyRequest, reply: FastifyReply) => {
         return new DeleteProductController().handle(request, reply);
+    })
+
+    fastify.put("/product", async (request: FastifyRequest, reply: FastifyReply) => {
+        return new UpdateProductController().handle(request, reply);
     })
 
 
@@ -67,5 +78,9 @@ export async function routes(fastify: FastifyInstance, options: FastifyPluginOpt
 
     fastify.delete("/loyalty", async (request: FastifyRequest, reply: FastifyReply) => {
         return new DeleteLoyaltyController().handle(request, reply);
+    })
+
+    fastify.put("/loyalty", async (request: FastifyRequest, reply: FastifyReply) => {
+        return new UpdateLoyaltyController().handle(request, reply);
     })
 }
